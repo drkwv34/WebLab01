@@ -1,3 +1,14 @@
+<?php 
+    echo var_dump($_COOKIE);
+    $nombre = $clave = "";
+    $recordarme = false;
+    if(isset($_COOKIE["recuerdame"]) && $_COOKIE["recuerdame"]!=""){
+        $nombre = isset($_COOKIE["nombreUsuario"])?$_COOKIE["nombreUsuario"]:"";
+        $clave = isset($_COOKIE["claveUsuario"])?$_COOKIE["claveUsuario"]:"";
+        $recordarme = true;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +26,7 @@
         type="text"
         name="usuario"
         id="usuario"
-        value=""
+        value="<?php echo $nombre?>"
         required="true"
       /><br />
 
@@ -24,11 +35,12 @@
         type="password"
         name="clave"
         id="clave"
-        value=""
+        value="<?php echo $clave?>"
         required="true"
       /><br />
 
-      <input type="checkbox" name="chkRecordarme" id="recordarme" />
+      <input type="checkbox" name="chkRecordarme" id="recordarme" 
+        <?php $recordarme? print "checked":""?> />
       <label for="recordarme">Recordarme?</label><br />
       <input type="submit" value="Enviar" />
     </form>
